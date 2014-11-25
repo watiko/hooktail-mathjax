@@ -1,11 +1,11 @@
 {
   "manifest_version": 2,
-  "name": "Wikipedia with MathJax (Development version)",
-  "version": "0.0.6",
-  "description": "Renders Wikipedia equations with MathJax",
+  "name": "Hooktail with MathJax (Development version)",
+  "version": "0.0.7",
+  "description": "Renders Hooktail equations with MathJax",
   "content_scripts": [
     {
-      "matches": ["http://*.wikipedia.org/*", "https://*.wikipedia.org/*"],
+      "matches": ["http://hooktail.sub.jp/*"],
       "js": ["jquery-min-1.7.2.js", "content.js"],
       "run_at": "document_end"
     }
