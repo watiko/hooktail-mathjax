@@ -30,28 +30,39 @@
 
 // Wrap the span for legacy zoom levels.
 // Could it be an option within the Chrome extension?
-$('img.tex').each(function() {
-  if($(this).parent().is('dd')) {
-    $(this).wrap('<span style="font-size: 125%">');
+$('img.inlinemath').each(function() {
+  if($(this).parent().is('td,blockquote')) {
+    $(this).wrap('<span class="math_font" />');
   }
 });
+
+// Workaround for span span span ... getting extra small font-size
+$('head').append('\
+<style>\
+td span.math_font {\
+  font-size:' + $('table.footnote').css('font-size') + ';\
+}\
+td span.math_font span {\
+  font-size: 100%;\
+  color: #556;\
+}\
+</style>\
+');
 
 // Wrap images in MathJax_Preview spans and attach the MathJax math script.
 // MathJax will remove the preview when it's done typesetting.
-$('img.tex').wrap('<span class="MathJax_Preview" />');
++$('img.inlinemath').wrap('<span class="MathJax_Preview" />');
++$('img.dispmath').wrap('<div class="MathJax_Preview" />');
 $('.MathJax_Preview').after(function () {
-  var $disp, $scale;
-  if($(this).parent().is('dd')) {
-    $disp = '; mode=display';
-  }else{
-    $disp = '';
-  }
+  var $scale;
   tex = $(this).find('img').attr("alt");
-  return '<script type="math/tex' + $disp + '">' + tex + '</script>';
+  // Workaround for .has (chrome)
+  if($(this).find('img').attr('class') == 'dispmath') {
+    return '<script type="math/tex; mode=display">\\begin{align*}' + tex + '\\end{align*}</script>';
+  }else{
+    return '<script type="math/tex">' + tex + '</script>';
+  }
 });
-
-
-
 
 //    extensions: ["tex2jax.js"],\
 //    tex2jax: {\
@@ -72,6 +83,7 @@ $('.MathJax_Preview').after(function () {
 
 $('script').append('<script type="text/x-mathjax-config">\
   MathJax.Hub.Config({\
+    displayIndent: "2.7em",\
     displayAlign: "left",\
     TeX: {\
       extensions: ["color.js"],\
@@ -111,7 +123,10 @@ $('script').append('<script type="text/x-mathjax-config">\
         Tau:          "\\\\mathrm{T}",\
         Chi:          "\\\\mathrm{X}",\
 \
-	bold:         ["{\\\\boldsymbol #1}",1],\
+        bm:           ["{\\\\boldsymbol #1}",1],\
+        bold:         ["{\\\\boldsymbol #1}",1],\
+        boldmath:     ["{\\\\boldsymbol #1}",1],\
+        ointop:       "\\\\oint",\
       }\
     },\
     menuSettings: {\
