@@ -18,7 +18,7 @@ For bug reports and feature requests, please use [Issue tracker](https://github.
 ### UPDATES:
 
 **v.0.0.7:**
- - Alter this extension for Hooktail from Wikipedia.
+ - Alter this extension for Hooktail from Wikipedia. (forked from [wiki-mathjax](https://github.com/bgromov/wiki-mathjax), thanks Boris Gromov)
 
 **v.0.0.6:**
 
