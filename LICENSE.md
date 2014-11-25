@@ -1,7 +1,9 @@
 Software License Agreement (BSD License)
 
 Copyright (c) 2012-2013, Boris Gromov
+
 Copyright (c) 2014, watiko
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
