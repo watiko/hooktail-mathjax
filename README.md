@@ -1,21 +1,24 @@
-Wikipedia with MathJax (Chrome extesion)
+Hooktail with MathJax (Chrome extesion)
 ========================================
 
-Extension replaces Wikipedia bitmap equations with HTML-CSS ones by re-rendering them with an open source [MathJax](http://mathjax.org/) library. In effect, this allows to scale Wikipedia pages without loosing in equation quality.
+Extension replaces [物理のかぎしっぽ](http://hooktail.sub.jp/) (the "Hooktail") bitmap equations with HTML-CSS ones by re-rendering them with an open source [MathJax](http://mathjax.org/) library. In effect, this allows to scale Hooktail pages without loosing in equation quality.
 
 Left-Click on equation to instantly zoom it to 200% (can be changed via MathJax menu).
 
 Right-Click on equation to show MathJax's context menu with additional options, e.g. "Scale All Math..." to instantly scale all equations on a page, "TeX commands" to see the source TeX equation etc.
 
-Extension is now published under [New BSD License](https://github.com/bgromov/wiki-mathjax/blob/master/LICENSE.md) with the source code available [here](https://github.com/bgromov/wiki-mathjax).
+Extension is now published under [New BSD License](https://github.com/watiko/wiki-mathjax/blob/master/LICENSE.md) with the source code available [here](https://github.com/watiko/wiki-mathjax).
 
-For bug reports and feature requests, please use [Issue tracker](https://github.com/bgromov/wiki-mathjax/issues).
+For bug reports and feature requests, please use [Issue tracker](https://github.com/watiko/wiki-mathjax/issues).
 
 ### INSTALLATION:
 
-Official release available at [Chrome Web Store](https://chrome.google.com/webstore/detail/wikipedia-with-mathjax/fhomhkjcommffnlajeemenejemmegcmi).
+ - TODO
 
 ### UPDATES:
+
+**v.0.0.7:**
+ - Alter this extension for Hooktail from Wikipedia.
 
 **v.0.0.6:**
 
