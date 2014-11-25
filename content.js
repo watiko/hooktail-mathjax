@@ -1,32 +1,4 @@
-//$('table.wikitable').each(function (){
-//    $(this).replaceWith( $(this).html()
-//        .replace(/<tbody/gi, "<div class='wikitable'")
-//        .replace(/<tr/gi, "<div class=''")
-//        .replace(/<\/tr>/gi, "</div>")
-//        .replace(/<td/gi, "<span")
-//        .replace(/<\/td>/gi, "</span>")
-//        .replace(/<\/tbody/gi, "<\/div")
-//    );
-//});
-
-
-// // Replace image tags with MathJax math scripts
-// $('img.tex').replaceWith(function() {
-//   var $otag, $ctag, $disp, $scale;
-//   if($(this).parent().is('dd')) {
-//     $otag = '[mjax]'; $ctag = '[/mjax]';
-//     $disp = '; mode=display';
-//     $scale = '125%';
-//   }else{
-//     $otag = '[mjax-inline]'; $ctag = '[/mjax-inline]';
-//     $disp = '';
-//     $scale = '100%';
-//   }
-//   return '<span style="font-size: ' + $scale + '"><script type="math/tex' + $disp + '">' + $(this).attr('alt') + '</script></span>';
-// //  return '<div style="font-size: 125%">' + $otag + $(this).attr('alt') + $ctag + '</div>';
-// });
-
-
+$(function(){
 
 // Wrap the span for legacy zoom levels.
 // Could it be an option within the Chrome extension?
@@ -36,33 +8,44 @@ $('img.inlinemath').each(function() {
   }
 });
 
-// Workaround for span span span ... getting extra small font-size
+// Get value of 100% font-size : Int
+var basesize = parseInt($('body').css('font-size'), 10);
+
+// Check page url : Array
+// TODO : find solution
+var latexImpress = location.href.match(/latexImpress/)
+
+// Workaround xtream small font
 $('head').append('\
 <style>\
-td span.math_font {\
-  font-size:' + $('table.footnote').css('font-size') + ';\
-}\
 td span.math_font span {\
-  font-size: 100%;\
   color: #556;\
+}\
+.footnote td span.math_font span {\
+  font-size:' + basesize * 0.85 + 'px;\
+}\
+.footnote td span.math_font #MathJax_Zoom span {\
+  font-size:' + basesize * 0.85 * 2 + 'px;\
 }\
 </style>\
 ');
 
 // Wrap images in MathJax_Preview spans and attach the MathJax math script.
 // MathJax will remove the preview when it's done typesetting.
-+$('img.inlinemath').wrap('<span class="MathJax_Preview" />');
-+$('img.dispmath').wrap('<div class="MathJax_Preview" />');
-$('.MathJax_Preview').after(function () {
-  var $scale;
-  tex = $(this).find('img').attr("alt");
-  // Workaround for .has (chrome)
-  if($(this).find('img').attr('class') == 'dispmath') {
-    return '<script type="math/tex; mode=display">\\begin{align*}' + tex + '\\end{align*}</script>';
-  }else{
-    return '<script type="math/tex">' + tex + '</script>';
-  }
-});
+$('img.inlinemath').wrap('<span class="MathJax_Preview" />');
+$('img.dispmath').wrap('<div class="MathJax_Preview" />');
+
+if (!latexImpress){
+  $('.MathJax_Preview').after(function () {
+    tex = $(this).find('img').attr("alt");
+    // Workaround for .has (chrome)
+    if($(this).find('img').attr('class') == 'dispmath') {
+      return '<script type="math/tex; mode=display">\\begin{align*}' + tex + '\\end{align*}</script>';
+    }else{
+      return '<script type="math/tex">' + tex + '</script>';
+    }
+  });
+};
 
 //    extensions: ["tex2jax.js"],\
 //    tex2jax: {\
@@ -147,4 +130,4 @@ $('script').append('<script type="text/x-mathjax-config">\
 // TODO: follow Wikipedia's configuration https://git.wikimedia.org/blob/mediawiki%2Fextensions%2FMath/0476fd66d5ed73103349ca8c376601656bb2bec9/modules%2FMathJax%2Fconfig%2FTeX-AMS-texvc_HTML.js
 $('script').append('<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>');
 
-
+});

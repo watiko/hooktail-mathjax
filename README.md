@@ -17,6 +17,10 @@ For bug reports and feature requests, please use [Issue tracker](https://github.
 
 ### UPDATES:
 
+**v.0.0.8:**
+ - Disable rendering in latexImpress.
+ - Fix: font size in zoom frame
+
 **v.0.0.7:**
  - Alter this extension for Hooktail from Wikipedia. (forked from [wiki-mathjax](https://github.com/bgromov/wiki-mathjax), thanks Boris Gromov)
 

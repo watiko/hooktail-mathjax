@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Hooktail with MathJax (Development version)",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Renders Hooktail equations with MathJax",
   "content_scripts": [
     {
